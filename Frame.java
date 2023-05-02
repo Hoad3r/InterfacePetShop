@@ -1,4 +1,7 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package interfacevisual;
 
 import java.awt.BorderLayout;
@@ -14,11 +17,13 @@ import javax.swing.JPanel;
  *
  * @author detup
  */
-public class Frame extends javax.swing.JFrame {
-Branco layoutbranco = new Branco();
+public class AppFrame extends javax.swing.JFrame {
+    Branco layoutbranco = new Branco();
+    
     /**
-     * Creates new form Frame
+     * Creates new form AppFrame
      */
+    
     public void setconfpanel(JPanel p){
         p.setSize(2000,1024);
         p.setLocation(416,0 ); // abre o painel já no local desejado
@@ -26,9 +31,22 @@ Branco layoutbranco = new Branco();
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
     }
-    
-    public Frame() {
-        initComponents();
+    public void getsidebar(){
+        panelPrincipal.add(panelSideBar);
+    }
+    public void loginAutorizado(){
+        getsidebar();
+        setconfpanel(layoutbranco);
+    }
+    public void confpanellogin(JPanel p){
+        p.setSize(1440,1024);
+        p.setLocation(0,0);
+        panelPrincipal.add(p);
+        panelPrincipal.revalidate();
+        panelPrincipal.repaint();
+    }
+    public AppFrame() {
+        initComponents();    
         setconfpanel(layoutbranco);
     }   
 
@@ -276,7 +294,7 @@ Branco layoutbranco = new Branco();
         // TODO add your handling code here:
         Usuarios layoutusuario = new Usuarios();
         panelPrincipal.removeAll();
-        panelPrincipal.add(panelSideBar);
+        getsidebar();
         setconfpanel(layoutusuario);
     }                                             
 
@@ -297,7 +315,7 @@ Branco layoutbranco = new Branco();
     }                                                    
 
     private void sairbuttonActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
+        // TODO add your handling code here:  
     }                                          
 
     private void cuidadoresbuttonActionPerformed(java.awt.event.ActionEvent evt) {                                                 
@@ -321,21 +339,22 @@ Branco layoutbranco = new Branco();
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AppFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AppFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AppFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AppFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                
-                new Frame().setVisible(true);
+                new AppFrame().setVisible(true);
             }
         });
     }
@@ -345,8 +364,6 @@ Branco layoutbranco = new Branco();
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JPanel panelFotoPetshop;
     private javax.swing.JPanel panelPrincipal;
