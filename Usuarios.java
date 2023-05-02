@@ -13,10 +13,14 @@ import javax.swing.table.DefaultTableModel;
  * @author detup
  */
 public class Usuarios extends javax.swing.JPanel{
-NovoUsuario cadastropage = new NovoUsuario();
+    NovoUsuario cadastropage = new NovoUsuario();
+    EditarUsuario editpage = new EditarUsuario();
+    Object nome,email,novonome,novoemail;
+
     /**
      * Creates new form Usuarios
      */
+
 public void setconfpanel(JPanel p){
         
         p.setSize(1024,1024);
@@ -91,13 +95,15 @@ public void setconfpanel(JPanel p){
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, true, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        tabelaUsuarios.setToolTipText("");
+        tabelaUsuarios.setShowGrid(false);
         jScrollPane1.setViewportView(tabelaUsuarios);
 
         javax.swing.GroupLayout UsuariosPanelLayout = new javax.swing.GroupLayout(UsuariosPanel);
@@ -139,15 +145,44 @@ public void setconfpanel(JPanel p){
 
     private void newUserButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
-        
         UsuariosPanel.removeAll();
         setconfpanel(cadastropage);
-        
+      
     }                                             
-   
+    // atualiza os dados antes de voltar para essa pagina.
+    public void refreshtable(){
+        DefaultTableModel tabelaUsuario = (DefaultTableModel) tabelaUsuarios.getModel();
+        Object[] dados = {nome,email,"indisponivel"};
+        tabelaUsuario.addRow(dados);
+    }
+    public void setNome(Object nome){
+        this.nome=nome;
+    }
+     public void setEmail(Object email){
+        this.email=email;
+    }
+    public void editTable(){
+//        DefaultTableModel tabelaUsuario = (DefaultTableModel) tabelaUsuarios.getModel();
+//        tabelaUsuario.setValueAt(novonome, tabelaUsuarios.getSelectedRow(), 0);
+//        tabelaUsuario.setValueAt(novoemail, tabelaUsuarios.getSelectedRow(), 1);
+//        tabelaUsuario.setValueAt("agr",tabelaUsuarios.getSelectedRow(),2);
+        
+    }
+    public void setNovoNome(Object novonome){
+        this.novonome=novonome;
+    }
+     public void setNovoEmail(Object novoemail){
+        this.novoemail=novoemail;
+    }
+    
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-
+         if(tabelaUsuarios.getSelectedRow() != -1){
+            UsuariosPanel.removeAll();
+            setconfpanel(editpage);
+         }else{
+            JOptionPane.showMessageDialog(null,"Selecione um usúario para Editar");
+         }
     }                                          
 
     private void deletButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
