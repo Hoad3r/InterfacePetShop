@@ -26,6 +26,7 @@ public class NovoUsuario extends javax.swing.JPanel {
     
     public NovoUsuario(){
         initComponents();
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,7 +39,6 @@ public class NovoUsuario extends javax.swing.JPanel {
 
         jScrollBar1 = new javax.swing.JScrollBar();
         CadastroUsuarioPanel = new javax.swing.JPanel();
-        cadastrarusuariobutton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -46,16 +46,10 @@ public class NovoUsuario extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         cadastronomeusuario = new javax.swing.JFormattedTextField();
         emailcadastrousuario = new javax.swing.JFormattedTextField();
+        cadastrarusuariobutton = new javax.swing.JButton();
 
         CadastroUsuarioPanel.setBackground(new java.awt.Color(255, 255, 255));
         CadastroUsuarioPanel.setPreferredSize(new java.awt.Dimension(1024, 1024));
-
-        cadastrarusuariobutton.setText("Cadastrar");
-        cadastrarusuariobutton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadastrarusuariobuttonActionPerformed(evt);
-            }
-        });
 
         jLabel3.setText("Nome");
 
@@ -84,6 +78,15 @@ public class NovoUsuario extends javax.swing.JPanel {
             }
         });
 
+        cadastrarusuariobutton.setBackground(new java.awt.Color(0, 102, 204));
+        cadastrarusuariobutton.setForeground(new java.awt.Color(255, 255, 255));
+        cadastrarusuariobutton.setText("Cadastrar");
+        cadastrarusuariobutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastrarusuariobuttonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout CadastroUsuarioPanelLayout = new javax.swing.GroupLayout(CadastroUsuarioPanel);
         CadastroUsuarioPanel.setLayout(CadastroUsuarioPanelLayout);
         CadastroUsuarioPanelLayout.setHorizontalGroup(
@@ -100,11 +103,11 @@ public class NovoUsuario extends javax.swing.JPanel {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(senhacadastrousuario, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cadastronomeusuario)
+                    .addComponent(emailcadastrousuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
                     .addGroup(CadastroUsuarioPanelLayout.createSequentialGroup()
                         .addGap(92, 92, 92)
-                        .addComponent(cadastrarusuariobutton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(cadastronomeusuario)
-                    .addComponent(emailcadastrousuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE))
+                        .addComponent(cadastrarusuariobutton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         CadastroUsuarioPanelLayout.setVerticalGroup(
@@ -124,9 +127,9 @@ public class NovoUsuario extends javax.swing.JPanel {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(senhacadastrousuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addGap(39, 39, 39)
                 .addComponent(cadastrarusuariobutton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(402, Short.MAX_VALUE))
+                .addContainerGap(407, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -145,22 +148,6 @@ public class NovoUsuario extends javax.swing.JPanel {
         );
     }// </editor-fold>                        
     
-    
-    private void cadastrarusuariobuttonActionPerformed(java.awt.event.ActionEvent evt) {                                                       
-        // TODO add your handling code here:
-        if(cadastronomeusuario.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"Nome Invalido!");
-        }else if(emailcadastrousuario.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"Email Invalido!");
-        }else if(senhacadastrousuario.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"Senha Invalido!");
-        }else{
-            JOptionPane.showMessageDialog(null,"Cadastrado com Sucesso!");
-            Usuarios layoutusuario = new Usuarios();
-            CadastroUsuarioPanel.removeAll();
-            setconfpanel(layoutusuario);
-        }
-    }                                                      
 
     private void senhacadastrousuarioActionPerformed(java.awt.event.ActionEvent evt) {                                                     
         // TODO add your handling code here:
@@ -174,12 +161,30 @@ public class NovoUsuario extends javax.swing.JPanel {
         // TODO add your handling code here:
     }                                                    
 
-
+    private void cadastrarusuariobuttonActionPerformed(java.awt.event.ActionEvent evt) {                                                       
+        // TODO add your handling code here:
+         if(cadastronomeusuario.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Nome Invalido!");
+        }else if(emailcadastrousuario.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Email Invalido!");
+        }else if(senhacadastrousuario.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Senha Invalido!");
+        }else{
+            Usuarios layoutusuario = new Usuarios();
+            JOptionPane.showMessageDialog(null,"Cadastrado com Sucesso!");
+            layoutusuario.setEmail(emailcadastrousuario.getText()); 
+            layoutusuario.setNome(cadastronomeusuario.getText());
+            layoutusuario.refreshtable();
+            CadastroUsuarioPanel.removeAll();
+            setconfpanel(layoutusuario);   
+        }
+    }                                                      
+    
     // Variables declaration - do not modify                     
     private javax.swing.JPanel CadastroUsuarioPanel;
-    private javax.swing.JButton cadastrarusuariobutton;
-    private javax.swing.JFormattedTextField cadastronomeusuario;
-    private javax.swing.JFormattedTextField emailcadastrousuario;
+    public javax.swing.JButton cadastrarusuariobutton;
+    public javax.swing.JFormattedTextField cadastronomeusuario;
+    public javax.swing.JFormattedTextField emailcadastrousuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
